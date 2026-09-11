@@ -3,13 +3,13 @@ import Plot from "react-plotly.js";
 import './App.css'
 import {CSVButton, TodayButton} from "./ExtraButtons.jsx";
 
-const API_BASE_URL = "http://localhost:3000";
-const YIELDCURVE_ENDPOINT = "/api/v1/yieldcurve/";
+const API_BASE_URL = "http://localhost:8000";
+// const YIELDCURVE = "/api/v1/yieldcurve/";
 
 
 async function fetchPars(date) {
-  const url = new URL(YIELDCURVE_ENDPOINT+date, API_BASE_URL);
-  const res = await fetch(url);
+//   const url = new URL(YIELDCURVE+date, API_BASE_URL);
+  const res = await fetch(API_BASE_URL+`/api/v1/yieldcurve/${date}`);
   return res.json();
 }
 
@@ -19,17 +19,13 @@ export default function App() {
   const [draft, setDraft] = useState(date);
   // const [latest, setLatest] = useState(false);
 
-  // const [parNodes, setParNodes] = useState<TimeSeries>([]);
-  // const [discountNodes, setDiscountNodes] = useState<TimeSeries>([]);
   const [zeroNodes, setZeroNodes] = useState([]);
-  // const [_zeroLogs, setZeroLogs] = useState<TimeSeries>([]);
 
   const [parPlotNodes, setParPlotNodes] = useState({x:[], y:[]});
   const [zeroPlotLogs, setZeroPlotLogs] = useState({x:[], y:[]});
 
   const [titleText, setTitleText] = useState(date);
 
-  // for 'unzipping' a TimeSeries
   function getSeries(seriesData) {
     const data = {
       x: seriesData.map(([t])=>12.0*t),

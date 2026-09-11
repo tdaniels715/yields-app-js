@@ -13,4 +13,4 @@ RUN npm install && npm run build
 FROM backend
 COPY --from=frontend /frontend/dist /frontend/dist
 WORKDIR /backend
-ENTRYPOINT ["/backend/docker-entrypoint.sh"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
