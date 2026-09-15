@@ -1,4 +1,6 @@
 **/.DS_Store
 **/.ipynb_checkpoints
-**/__pycache__/*
+**/__pycache__
 **/.idea
+backend/__pycache__/*
+**/backend/src/backend/__pycache__/*
